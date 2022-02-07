@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const [foodName,setFoodName] = useState("");
   const [days,setDays] =useState(0);
-
+  const [newFoodName,setFoodName] =useState("");
   const [foodList,setFoodList] = useState([])
 
   useEffect(() =>{
@@ -20,6 +20,12 @@ function App() {
       days:days,
     });
   };
+
+  const updateFood =(){
+    Axios.post("http://localhost:3001/update", {
+
+    });
+  }
 
   return (
     <div className="App">
@@ -43,10 +49,18 @@ function App() {
         <h1>Food List</h1>
 
         {foodList.map((val,key) =>{
-          return <div> <h1>{val.foodName}</h1> <h1>{val.daysSinceIAte}</h1></div>
+          return <div className="card1"> <h1>{val.foodName}</h1> <h1>{val.daysSinceIAte}</h1>
+          <input type="text" placeholder="New Food Name..."
+            onChange={(event) => {
+              setFoodName(event.target.value);
+            }} 
+          />
+          <button onClick={updateFood}>Update</button>
+          <button>Delete</button>
+          </div>
         })}
     </div>
   );
 }
-
+ 
 export default App;
