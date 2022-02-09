@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const [foodName,setFoodName] = useState("");
   const [days,setDays] =useState(0);
-  const [newFoodName,setFoodName] =useState("");
+  const [newFoodName,setNewfoodName] =useState("");
   const [foodList,setFoodList] = useState([])
 
   useEffect(() =>{
@@ -21,11 +21,11 @@ function App() {
     });
   };
 
-  const updateFood =(){
-    Axios.post("http://localhost:3001/update", {
+  const updateFood = () => {
+    Axios.post("http://localhost:3001/update", {})
 
-    });
-  }
+    }
+  
 
   return (
     <div className="App">
@@ -52,10 +52,10 @@ function App() {
           return <div className="card1"> <h1>{val.foodName}</h1> <h1>{val.daysSinceIAte}</h1>
           <input type="text" placeholder="New Food Name..."
             onChange={(event) => {
-              setFoodName(event.target.value);
+              setNewfoodName(event.target.value);
             }} 
           />
-          <button onClick={updateFood}>Update</button>
+          <button onClick={() => updateFood(value._id)}>Update</button>
           <button>Delete</button>
           </div>
         })}
